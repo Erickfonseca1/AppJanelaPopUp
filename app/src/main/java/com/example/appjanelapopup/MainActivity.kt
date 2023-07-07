@@ -1,12 +1,12 @@
 package com.example.appjanelapopup
 
 import android.content.DialogInterface
+import android.content.DialogInterface.OnClickListener
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
-import androidx.constraintlayout.motion.widget.OnSwipe
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         this.rvNomes = findViewById(R.id.rvNomes)
         this.faButtonAdd = findViewById(R.id.faButtonAdd)
+
         this.faButtonAdd.setOnClickListener { add() }
 
         this.rvNomes.adapter = MyAdapter(this.list)
@@ -46,10 +47,10 @@ class MainActivity : AppCompatActivity() {
         builder.create().show()
     }
 
-    inner class OnClick: DialogInterface.OnClickListener {
+    inner class OnClick: OnClickListener{
         override fun onClick(dialog: DialogInterface?, which: Int) {
-            val name = this@MainActivity.etName.text.toString()
-            (this@MainActivity.rvNomes.adapter as MyAdapter).add(name)
+            val nome = this@MainActivity.etName.text.toString()
+            (this@MainActivity.rvNomes.adapter as MyAdapter).add(nome)
         }
     }
 
@@ -69,8 +70,7 @@ class MainActivity : AppCompatActivity() {
             viewHolder: RecyclerView.ViewHolder,
             target: RecyclerView.ViewHolder
         ): Boolean {
-            (this@MainActivity.rvNomes.adapter as MyAdapter).mov(viewHolder.adapterPosition,
-                target.adapterPosition)
+            (this@MainActivity.rvNomes.adapter as MyAdapter).mov(viewHolder.adapterPosition, target.adapterPosition)
             return true
         }
 

@@ -30,8 +30,7 @@ class MyAdapter(private val list: MutableList<String>): RecyclerView.Adapter<MyA
 
     fun del(position: Int) {
         this.list.removeAt(position)
-        notifyItemRemoved(position)
-        notifyItemRangeChanged(position, this.list.size)
+        this.notifyItemRemoved(position)
     }
 
     fun mov(firstNamePosition: Int, secondNamePosition: Int) {
